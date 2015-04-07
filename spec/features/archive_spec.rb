@@ -1,5 +1,13 @@
 require 'spec_helper'
 
+describe 'Archive', :archive do
+  context "directories & files" do
+    it "should create zip file" do
+      Zip.archive_code
+    end
+  end
+end
+
 describe 'Archive and upload', :upload do
   context "directories & files to S3" do
     it "should create zip file and upload to S3" do
