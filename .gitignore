@@ -1,6 +1,7 @@
 *.gem
 Gemfile.lock
-tmp/*
+spec/tmp/*
+tmp/
 .DS_Store
 .idea
 .gems
