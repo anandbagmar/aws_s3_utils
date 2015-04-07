@@ -15,6 +15,7 @@ module Zip
       `pwd; cd #{loaded_input_data[:root_directory]}; pwd; zip -r #{loaded_input_data[:upload][:zip_file_name]} #{file_or_dir}`
     }
     puts "Code archived in: #{absolute_zip_file_name}"
+    Utils.add_to_cleanup_list absolute_zip_file_name
     absolute_zip_file_name
   end
 
@@ -27,5 +28,6 @@ module Zip
     file_contents += "\n#{loaded_input_data[:upload].inspect}"
     puts "Creating file: '#{absolute_version_file_path}' with content:\n#{file_contents}"
     File.open(absolute_version_file_path, 'w') { |file| file.write(file_contents) }
+    Utils.add_to_cleanup_list absolute_version_file_path
   end
 end

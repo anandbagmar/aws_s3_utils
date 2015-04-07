@@ -5,6 +5,7 @@ describe 'Archive and upload', :upload do
     it "should create zip file and upload to S3" do
       Zip.archive_code("input-data")
       # EC2.upload_to_s3(Zip.archive_code("input-data"))
+      Utils.cleanup
     end
   end
 end

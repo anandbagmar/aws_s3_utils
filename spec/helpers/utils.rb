@@ -2,6 +2,7 @@ require 'yaml'
 
 module Utils
   @@input_data = {}
+  @@cleanup_list = []
 
   def self.load_and_sanitize(test_data_file_name)
     @@input_data = load_input_data_from(test_data_file_name)
@@ -25,9 +26,22 @@ module Utils
     symbolized_keys_input_data
   end
 
-  def self.cleanup
-    cleanup_list = []
+  def self.add_to_cleanup_list name
+    @@cleanup_list << name
   end
+
+  def self.cleanup
+    if (@@input_data[:upload][:delete_from_local_after_upload])
+      puts "Delete the created Version and zip file"
+      @@cleanup_list.each { |file_name|
+        puts "\tDeleting: #{file_name}"
+        File.delete file_name
+      }
+    else
+      puts "Skipping cleanup"
+    end
+  end
+
   private
   def self.update_loaded_data_from_environment (data_from_env)
     data_from_env.each { |key, value|
