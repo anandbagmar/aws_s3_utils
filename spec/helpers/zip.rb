@@ -1,7 +1,7 @@
 module Zip
 
-  def self.archive_code test_data_file_name
-    loaded_input_data = Utils.load_and_sanitize(test_data_file_name)
+  def self.archive_code
+    loaded_input_data = Utils.loaded_input_data
 
     create_version_file(loaded_input_data)
 
